@@ -15,7 +15,7 @@ const register = async (req, res, next) => {
     .status(201)
     .json({
       msg: "User created successfully",
-      nickName: newUser.Name,
+      name: newUser.Name,
       profileImage: newUser.profileImage,
       token,
     });
@@ -30,7 +30,7 @@ const login = async (req, res, next) => {
     const match = newUser.check(req.body.password);
     if (!match) return res.send("wrong password!");
     const token = newToken(newUser);
-    return res.status(200).json({msg: "Login Successful", nickName:newUser.Name, profileImage: newUser.profileImage, token});
+    return res.status(200).json({msg: "Login Successful", name:newUser.Name, profileImage: newUser.profileImage, token});
   } catch (err) {
     return res.status(500).send(err.message);
   }
