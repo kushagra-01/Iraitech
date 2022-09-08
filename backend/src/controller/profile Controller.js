@@ -14,14 +14,14 @@ router.patch("/profile/:id", async (req, res) => {
         if (!req.headers.token) {
             return res.status(500).send("Please enter a token");
         }
-        const decode = jwt.verify(req.headers.token, "HashIt")
+        const decode = jwt.verify(req.headers.token, "HashEnv")
 
         if (!decode) {
             return res.status(500).send("Wrong Crediential")
-        }
+         };
 
-        const User = await Products.findByIdAndUpdate(req.params.id, req.body, { new: true }).lean.exec()
-        if (User) { return res.status(200).send(User) }
+        const profile = await Products.findByIdAndUpdate(req.params.id, req.body, {new : true,}).lean().exec()  
+        if (profile) { return res.status(200).send(profile) }
         else {
             return res.status(500).send("User Not Found");
         }
@@ -41,7 +41,7 @@ router.post("/Creatingprofile", async (req, res) => {
             return res.status(500).send("Please enter a token");
         }
 
-        const decode = jwt.verify(req.headers.token, "HashIt");
+        const decode = jwt.verify(req.headers.token, process.env.JWT_SECRET_KEY);
 
         if (!decode) {
             return res.status(500).send("Wrong Crediential")
@@ -63,7 +63,7 @@ router.get("/allProfile", async (req, res) => {
             return res.status(500).send("Please enter a token");
         }
 
-        const decode = jwt.verify(req.headers.token, "HashIt");
+        const decode = jwt.verify(req.headers.token, "HashEnv");
 
         if (!decode) {
             return res.status(500).send("Wrong Crediential")
