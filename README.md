@@ -7,3 +7,5 @@ profile/:id --- to update or patch
 
 for server start -- nodemon src/index.js
 
+server -5000
+
