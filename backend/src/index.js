@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const connect = require("./config/db");
-
+const { login, register } = require("./controller/auth.controller");
 
 const cors = require("cors");
 
@@ -10,6 +10,9 @@ app.use(express.json());
 app.use(cors());
 
 
+
+app.post("/login", login);
+app.post("/register", register);
 
 //connecting ans starting server
 
