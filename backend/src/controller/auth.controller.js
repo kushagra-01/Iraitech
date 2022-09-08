@@ -1,7 +1,7 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const newToken = (newUser) => {
-  return jwt.sign({ newUser }, "Nrupul");
+  return jwt.sign({ newUser }, "HashEnv");
 };
 const User = require("../models/Users.model");
 
